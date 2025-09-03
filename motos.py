@@ -152,9 +152,16 @@ def filtrar():
     # Retornar como JSON
     return jsonify(motos)
 
-# Rota principal: mostra as motos cadastradas
 @app.route('/')
+@app.route('/sabrina')
+def sabrina():
+    return render_template('sabrina.html')  # renomeie index.html para sabrina.html
+# Executa o app
+
+# Rota principal: mostra as motos cadastradas
+@app.route('/catalago')
 def index():
+    
     marca = request.args.get('marca', '')
     modelo = request.args.get('modelo', '')
     ano = request.args.get('ano', '')
@@ -335,10 +342,7 @@ def remover_imagem(id):
 
     return redirect(f'/editar/{id}')
 
-@app.route('/sabrina')
-def sabrina():
-    return render_template('sabrina.html')  # renomeie index.html para sabrina.html
-# Executa o app
+
 
 @app.route('/consorcios')
 def consorcios_publico():
@@ -483,4 +487,3 @@ def excluir_consorcio(id):
 
 if __name__ == '__main__':
     init_consorcios_db()
-    app.run(debug=True)
